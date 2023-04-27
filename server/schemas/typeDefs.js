@@ -5,18 +5,17 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    password: String
+    bookCount: Int
     savedBooks: [Book]
   }
 
   type Book {
-    _id: ID
-    description: String
     bookID: String
+    authors: [String]
+    description: String
+    title: String
     image: String
     link: String
-    title: String
-    authors: [String]
   }
 
   # Auth type to handle returning data from creating or logging in a user.
@@ -26,7 +25,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    getMe: User
+    me: User
   }
 
   type Mutation {
