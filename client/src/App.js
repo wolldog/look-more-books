@@ -44,7 +44,7 @@ function App() {
             element={ <SearchBooks /> }
             />
           <Route 
-            path="/" 
+            path="/saved" 
             element={ <SavedBooks /> }
             />
         </Routes>
