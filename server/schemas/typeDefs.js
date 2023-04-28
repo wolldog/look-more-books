@@ -18,6 +18,15 @@ const typeDefs = gql`
     link: String
   }
 
+  input BookDataInput {
+    bookId: String
+    authors: [String]
+    description: String
+    title: String
+    image: String
+    link: String
+  }
+
   # Auth type to handle returning data from creating or logging in a user.
   type Auth {
     token: ID!
@@ -32,6 +41,7 @@ const typeDefs = gql`
     # Set up mutations to handle creating a profile or logging into a profile and return Auth type
     createUser(username: String!, email: String!, password: String!): Auth
     loginUser(email: String!, password: String!): Auth
+    saveBook(input: BookDataInput!): User
   }
 `;
 
