@@ -6,7 +6,8 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("savedBooks");
+        return User.findOne(
+          { _id: context.user._id }).populate("savedBooks");
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -36,7 +37,18 @@ const resolvers = {
 
       return { token, user };
     },
-  },
-};
+    saveBook: async (parent, {input}, context) => {
+      if(context.user) {
+        return updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id},
+          { $addToSet: {savedBooks: {...input}}},
+          { new: true }
+        );
+      }
+        throw new AuthenticationError("Incorrect credentials");
+      }
+    },
+  };
+
 
 module.exports = resolvers;
